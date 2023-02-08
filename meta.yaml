@@ -1,0 +1,4 @@
+name: argocd
+version: sharding-test-4
+deployable_type: image
+CX_PRODUCT: platform
