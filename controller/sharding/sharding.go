@@ -44,6 +44,8 @@ func GetClusterFilter(replicas int, shard int) func(c *v1alpha1.Cluster) bool {
 		if c != nil {
 			if c.Shard != nil {
 				clusterShard = int(*c.Shard)
+			} else if shardId, ok := c.Labels["argocd.argoproj.io/shard-id"]; ok  {
+				clusterShard, _ = strconv.Atoi(shardId)
 			} else {
 				clusterShard = GetShardByID(c.ID, replicas)
 			}

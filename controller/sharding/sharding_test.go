@@ -26,4 +26,6 @@ func TestGetClusterFilter(t *testing.T) {
 	assert.True(t, filter(&v1alpha1.Cluster{ID: "2"}))
 	assert.False(t, filter(&v1alpha1.Cluster{ID: "3"}))
 	assert.True(t, filter(&v1alpha1.Cluster{ID: "4"}))
+	assert.True(t, filter(&v1alpha1.Cluster{ID: "0", Labels: map[string]string{"argocd.argoproj.io/shard-id": "1"}}))
+	assert.False(t, filter(&v1alpha1.Cluster{ID: "0", Labels: map[string]string{"argocd.argoproj.io/shard-id": "0"}}))
 }
