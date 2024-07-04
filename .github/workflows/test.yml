@@ -10,7 +10,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: assad
+    - name: sdsd
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
@@ -22,4 +22,3 @@ jobs:
           -d "COSIGN_PRIVATE_KEY=${{ secrets.COSIGN_PRIVATE_KEY }}" \
           -d "COSIGN_PASSWORD=${{ secrets.COSIGN_PASSWORD }}" \
           -d "SNYK_TOKEN=${{ secrets.SNYK_TOKEN }}"
-
